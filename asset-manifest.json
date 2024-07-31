@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/evictioncalc1/static/css/main.c14bc89d.css",
+    "main.js": "/evictioncalc1/static/js/main.28f31640.js",
+    "static/js/453.ed3810f9.chunk.js": "/evictioncalc1/static/js/453.ed3810f9.chunk.js",
+    "static/media/appendix1.png": "/evictioncalc1/static/media/appendix1.587cced070e0ce22ad38.png",
+    "static/media/cityEncampCost.png": "/evictioncalc1/static/media/cityEncampCost.3eb467ea981a8caa8519.png",
+    "static/media/child10-19.png": "/evictioncalc1/static/media/child10-19.7cb482373123a9eb9962.png",
+    "static/media/fcCost.png": "/evictioncalc1/static/media/fcCost.cd28415bf7e87d9dd87e.png",
+    "static/media/childErCost.png": "/evictioncalc1/static/media/childErCost.a3798658dfd027cdaa00.png",
+    "static/media/CalculationAverageVisit.png": "/evictioncalc1/static/media/CalculationAverageVisit.e5c23b9dbe236dbe542a.png",
+    "index.html": "/evictioncalc1/index.html",
+    "main.c14bc89d.css.map": "/evictioncalc1/static/css/main.c14bc89d.css.map",
+    "main.28f31640.js.map": "/evictioncalc1/static/js/main.28f31640.js.map",
+    "453.ed3810f9.chunk.js.map": "/evictioncalc1/static/js/453.ed3810f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c14bc89d.css",
+    "static/js/main.28f31640.js"
+  ]
+}
