@@ -1,0 +1,51 @@
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .tooltip-box {
+    position: absolute;
+    width: 300px; /* Adjust width as necessary */
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%); /* Centers the tooltip */
+    background-color: #333; /* Dark background color */
+    color: white;
+    text-align: left;
+    padding: 10px 15px; /* More padding for better text display */
+    border-radius: 6px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.25); /* Adding some shadow for depth */
+    z-index: 100; /* Ensure it's above other content */
+    visibility: hidden; /* Hide tooltip by default */
+    opacity: 0; /* Start with hidden opacity */
+    transition: visibility 0.2s, opacity 0.2s ease-in-out; /* Smooth transition for tooltip */
+  }
+  
+  .tooltip-container:hover .tooltip-box {
+    visibility: visible; /* Show tooltip when hovering */
+    opacity: 1; /* Fade in effect */
+  }
+  
+  /* Triangle pointer */
+  .tooltip-box::after {
+    content: "";
+    position: absolute;
+    top: 100%; /* Position directly at the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent; /* Arrow with the same color as the tooltip */
+  }
+  
+
+
+
+
+
+
+
+
+
+

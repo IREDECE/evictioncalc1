@@ -1,0 +1,55 @@
+.title-container {
+    background-color: #4d87ad; /* Example color: Bootstrap primary blue */
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    font-family: Arial, sans-serif; /* Set your preferred font */
+    margin-bottom: 15px;
+  }
+
+  .title-container2 {
+    background-color: #438d9c; /* Example color: Bootstrap primary blue */
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    font-family: Arial, sans-serif; /* Set your preferred font */
+    margin-bottom: 15px;
+  }
+  
+  .title-icon {
+    margin-right: 10px; /* Space between icon and text */
+    font-size: 24px; /* Icon size */
+  }
+
+  .title-icon2 {
+    margin-right: 10px; /* Space between icon and text */
+    font-size: 24px; /* Icon size */
+  }
+  
+  .title-container span {
+    font-size: 20px; /* Text size */
+    font-weight: bold;
+  }
+
+  .title-container2 span {
+    font-size: 20px; /* Text size */
+    font-weight: bold;
+  }
+
+
+  @media (max-width: 768px) {
+    .title-container {
+      padding: 5px 10px;
+    }
+  
+    .title-icon {
+      font-size: 20px;
+    }
+  
+    .title-container span {
+      font-size: 16px;
+    }
+  }
+

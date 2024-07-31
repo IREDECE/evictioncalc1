@@ -1,0 +1,38 @@
+
+.explanation-img {
+    width: 20%; /* or any fixed width like 300px */
+    height: auto; /* maintains the aspect ratio */
+    margin: 10px 0;
+    align-items: center;
+  }
+
+  @media (min-width: 768px) { /* For larger screens */
+    .explanation-img {
+      width: 50%; /* Larger viewports get a bigger image */
+    }
+  }
+
+  .subcategory {
+    margin-top: 10px;
+    padding-left: 20px;
+    border-left: 3px solid #007BFF; /* Use a distinct color to differentiate */
+    background-color: #e6f4ff; /* Lighter background to stand out */
+  }
+  
+  .subcategory h4 {
+    color: #333; /* Dark grey, slightly lighter than main title */
+    margin-top: 0;
+  }
+  
+  .subcategory p {
+    margin-top: 5px;
+  }
+  
+  .calculation-container {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #e6efff; /* Slightly lighter than subcategories for distinction */
+    border-left: 3px solid #0056b3; /* A different shade for calculations */
+  }
+
+  

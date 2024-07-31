@@ -1,0 +1,39 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #e6f7ff;
+    color: #003a8c;
+    font-family: Arial, sans-serif;
+  }
+  
+  .header {
+    background-color: #4d87ad;
+    color: white;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .main {
+    font-size: 24px;
+    margin: 20px;
+    text-align: center;
+  }
+  
+  .button {
+    background-color: #4d87ad;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  

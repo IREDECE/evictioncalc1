@@ -1,0 +1,11 @@
+
+#state-select {
+    padding: 8px;
+    border-radius: 4px;
+  }
+  
+  label {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+

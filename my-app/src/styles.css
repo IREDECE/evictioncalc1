@@ -1,0 +1,24 @@
+
+/* src/styles.css */
+body {
+    font-family: Arial, sans-serif;
+  }
+  header {
+    background-color: #319f37;
+    padding: 10px;
+    text-align: center;
+  }
+  form {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #4053cf;
+  }
+  label {
+    margin-bottom: 10px;
+    display: block;
+  }
+  input {
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+  
