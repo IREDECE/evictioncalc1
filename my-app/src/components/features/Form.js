@@ -1,6 +1,7 @@
 
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ExplanationText from '../ExplanationText';  // Make sure the path is correct
 import styled from 'styled-components';
 import './TitleStyle.css'; 
@@ -61,11 +62,39 @@ const Button = styled.button`
 `;
 
 function Form() {
-    const [data, setData] = useState({
-        evictionPercentage: '',
-        dailyCost: '',
-        shelterDays: ''
-    });
+  const [data, setData] = useState(() => {
+      // Retrieve data from session storage or set default values
+      const savedData = sessionStorage.getItem('formData');
+      return savedData ? JSON.parse(savedData) : {
+          evictionPercentage: '',
+          dailyCost: '',
+          shelterDays: '',
+          ERpercent: '',
+          ERonlyhomeless: '',
+          dailyERCost: '',
+          averageERVisit: '',
+          icPercent: '',
+          IConlyhomeless: '',
+          icCost: '',
+          icDays: '',
+          fosterPercent: '',
+          fcCost: '',
+          fcStay: '',
+          childErPercent: '',
+          childErCost: '',
+          childErFreq: '',
+          childArrestPercent: '',
+          childArrestCost: '',
+          childArrestDays: '',
+          avgEncampCost: ''
+      };
+  });
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+      sessionStorage.setItem('formData', JSON.stringify(data));
+  }, [data]);
 
     const handleChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value });
@@ -74,6 +103,8 @@ function Form() {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(data);
+        navigate('/review', { state: { data } });
+        // console.log(data);
     };
 
     const ERFrenquencyCalculation = [
@@ -90,7 +121,7 @@ function Form() {
     return (
         <FormContainer>
             <Title>Cost of Eviction Calculator 2024</Title>
-            <StyledForm>
+            <StyledForm onSubmit = {handleSubmit}>
 
               <div className="title-container">
                 <i className="fas fa-info-circle title-icon"></i>
@@ -113,7 +144,7 @@ function Form() {
 
               <FormField>
                   <Label htmlFor="evictionPercentage">Percentage of evictions leading to shelter needs</Label>
-                  <Input type="number" id="evictionPercentage" name="evictionPercentage" placeholder="Enter a percentage"/>
+                  <Input type="number" id="evictionPercentage" name="evictionPercentage" value = {data.evictionPercentage} onChange={handleChange} placeholder="Enter a percentage"/>
               </FormField>
 
               <ExplanationText
@@ -122,7 +153,7 @@ function Form() {
 
               <FormField>
                   <Label htmlFor="dailyCost">Please enter the cost per bed per year in shelters</Label>
-                  <Input type="number" id="dailyCost" name="dailyCost" placeholder="Enter the cost"/>
+                  <Input type="number" id="dailyCost" name="dailyCost" value = {data.dailyCost} onChange={handleChange} placeholder="Enter the cost"/>
               </FormField>
 
               <ExplanationText
@@ -131,7 +162,7 @@ function Form() {
 
               <FormField>
                   <Label htmlFor="shelterDays">Please enter the average days a homeless person stays in shelter</Label>
-                  <Input type="number" id="shelterDays" name="shelterDays" placeholder="Enter the number of days"/>
+                  <Input type="number" id="shelterDays" name="shelterDays" value = {data.shelterDays} onChange={handleChange} placeholder="Enter the number of days"/>
               </FormField>
 
               <ExplanationText
@@ -164,7 +195,7 @@ function Form() {
               <FormField>
                   <Label htmlFor="ERpercent">Please enter the percentage of homeless individuals utilizing ER services:
                   </Label>
-                  <Input type="number" id="ERpercent" name="ERpercent" placeholder="Enter a percentage"/>
+                  <Input type="number" id="ERpercent" name="ERpercent" value = {data.ERpercent} onChange={handleChange} placeholder="Enter a percentage"/>
               </FormField>
 
               <ExplanationText
@@ -174,7 +205,7 @@ function Form() {
               <FormField>
                   <Label htmlFor="ERonlyhomeless">Please enter the percentage of ER visits that would not occur if the individuals were not experiencing homelessness:
                   </Label>
-                  <Input type="number" id="ERonlyhomeless" name="ERonlyhomeless" placeholder="Enter a percentage"/>
+                  <Input type="number" id="ERonlyhomeless" name="ERonlyhomeless" value = {data.ERonlyhomeless} onChange={handleChange} placeholder="Enter a percentage"/>
               </FormField>
 
               <ExplanationText
@@ -184,7 +215,7 @@ function Form() {
               <FormField>
                   <Label htmlFor="dailyERCost">Please enter the average cost of ER visit per day:
                   </Label>
-                  <Input type="number" id="dailyERCost" name="dailyERCost" placeholder="Enter the cost"/>
+                  <Input type="number" id="dailyERCost" name="dailyERCost" value = {data.dailyERCost} onChange={handleChange} placeholder="Enter the cost"/>
               </FormField>
 
               <ExplanationText
@@ -192,9 +223,9 @@ function Form() {
               />
 
               <FormField>
-                  <Label htmlFor="averageERVisit">Please enter the average cost of ER visit per day:
+                  <Label htmlFor="averageERVisit">Enter average number of times a homeless person visits ER a year:
                   </Label>
-                  <Input type="number" id="averageERVisit" name="averageERVisit" placeholder="Enter average number of times a homeless person visits ER a year"/>
+                  <Input type="number" id="averageERVisit" name="averageERVisit" value = {data.averageERVisit} onChange={handleChange} placeholder="Enter average number of times"/>
               </FormField>
 
               <ExplanationText
@@ -211,7 +242,7 @@ function Form() {
               <FormField>
                   <Label htmlFor="icPercent">Please enter the percentage of homeless individuals using inpatient care:
                   </Label>
-                  <Input type="number" id="icPercent" name="icPercent" placeholder="Enter a percentage"/>
+                  <Input type="number" id="icPercent" name="icPercent" value = {data.icPercent} onChange={handleChange} placeholder="Enter a percentage"/>
               </FormField>
 
               <ExplanationText
@@ -220,9 +251,9 @@ function Form() {
               />
 
               <FormField>
-                  <Label htmlFor="IConlyhomeless">Please enter the percentage of ER visits that would not occur if the individuals were not experiencing homelessness:
+                  <Label htmlFor="IConlyhomeless">Please enter the percentage of inpatient care visits that would not occur if the individuals were not experiencing homelessness:
                   </Label>
-                  <Input type="number" id="IConlyhomeless" name="IConlyhomeless" placeholder="Enter a percentage"/>
+                  <Input type="number" id="IConlyhomeless" name="IConlyhomeless" value = {data.IConlyhomeless} onChange={handleChange} placeholder="Enter a percentage"/>
               </FormField>
 
               <ExplanationText
@@ -232,7 +263,7 @@ function Form() {
               <FormField>
                   <Label htmlFor="icCost">Please enter the average daily cost of an inpatient hospital visit:
                   </Label>
-                  <Input type="number" id="icCost" name="icCost" placeholder="Enter the cost"/>
+                  <Input type="number" id="icCost" name="icCost" value = {data.icCost} onChange={handleChange} placeholder="Enter the cost"/>
               </FormField>
 
               <ExplanationText
@@ -242,7 +273,7 @@ function Form() {
               <FormField>
                   <Label htmlFor="icDays">Please enter the average number of days a homeless person stays in inpatient care:
                   </Label>
-                  <Input type="number" id="icDays" name="icDays" placeholder="Enter the number of days"/>
+                  <Input type="number" id="icDays" name="icDays" value = {data.icDays} onChange={handleChange} placeholder="Enter the number of days"/>
               </FormField>
 
               <ExplanationText
@@ -287,7 +318,7 @@ function Form() {
               <FormField>
                   <Label htmlFor="fosterPercent">Please enter the percentage of homeless families who received child welfare services:
                   </Label>
-                  <Input type="number" id="fosterPercent" name="fosterPercent" placeholder="Enter a percentage"/>
+                  <Input type="number" id="fosterPercent" name="fosterPercent" value = {data.fosterPercent} onChange={handleChange} placeholder="Enter a percentage"/>
               </FormField>
 
               <ExplanationText
@@ -314,7 +345,7 @@ function Form() {
               <FormField>
                   <Label htmlFor="fcCost">Please enter the average per person per year cost of foster care:
                   </Label>
-                  <Input type="number" id="fcCost" name="fcCost" placeholder="Enter the cost"/>
+                  <Input type="number" id="fcCost" name="fcCost" value = {data.fcCost} onChange={handleChange} placeholder="Enter the cost"/>
               </FormField>
 
               <ExplanationText
@@ -331,7 +362,7 @@ function Form() {
               <FormField>
                   <Label htmlFor="fcStay">Please enter the average length a child stays in foster care:
                   </Label>
-                  <Input type="number" id="fcStay" name="fcStay" placeholder="Enter the number of years:"/>
+                  <Input type="number" id="fcStay" name="fcStay" value = {data.fcStay} onChange={handleChange} placeholder="Enter the number of years:"/>
               </FormField>
 
               <ExplanationText
@@ -357,7 +388,7 @@ function Form() {
               <FormField>
                   <Label htmlFor="childErPercent">Please enter the percentage of homeless children who used ER in the past year:
                   </Label>
-                  <Input type="number" id="childErPercent" name="childErPercent" placeholder="Enter a percentage:"/>
+                  <Input type="number" id="childErPercent" name="childErPercent" value = {data.childErPercent} onChange={handleChange} placeholder="Enter a percentage:"/>
               </FormField>
 
               <ExplanationText
@@ -373,7 +404,7 @@ function Form() {
               <FormField>
                   <Label htmlFor="childErCost">Please enter the average cost of ER visit for a child:
                   </Label>
-                  <Input type="number" id="childErCost" name="childErCost" placeholder="Enter the cost:"/>
+                  <Input type="number" id="childErCost" name="childErCost" value = {data.childErCost} onChange={handleChange} placeholder="Enter the cost:"/>
               </FormField>
 
               <ExplanationText
@@ -390,7 +421,7 @@ function Form() {
               <FormField>
                   <Label htmlFor="childErFreq">Please enter the average number of times a child visits ER in a year:
                   </Label>
-                  <Input type="number" id="childErFreq" name="childErFreq" placeholder="Enter a number:"/>
+                  <Input type="number" id="childErFreq" name="childErFreq" value = {data.childErFreq} onChange={handleChange} placeholder="Enter a number:"/>
               </FormField>
 
               <ExplanationText
@@ -423,7 +454,7 @@ function Form() {
               <FormField>
                   <Label htmlFor="childArrestPercent">Please enter the percentage of homeless youth who are arrested after being homeless:
                   </Label>
-                  <Input type="number" id="childArrestPercent" name="childArrestPercent" placeholder="Enter a percentage:"/>
+                  <Input type="number" id="childArrestPercent" name="childArrestPercent" value = {data.childArrestPercent} onChange={handleChange} placeholder="Enter a percentage:"/>
               </FormField>
 
               <ExplanationText
@@ -441,7 +472,7 @@ function Form() {
               <FormField>
                   <Label htmlFor="childArrestCost">Please enter the average cost per day of juvenile detention:
                   </Label>
-                  <Input type="number" id="childArrestCost" name="childArrestCost" placeholder="Enter the cost:"/>
+                  <Input type="number" id="childArrestCost" name="childArrestCost" value = {data.childArrestCost} onChange={handleChange} placeholder="Enter the cost:"/>
               </FormField>
 
               <ExplanationText
@@ -452,7 +483,7 @@ function Form() {
               <FormField>
                   <Label htmlFor="childArrestDays">Please enter the average number of days a child remains in juvenile detention:
                   </Label>
-                  <Input type="number" id="childArrestDays" name="childArrestDays" placeholder="Enter the number of days:"/>
+                  <Input type="number" id="childArrestDays" name="childArrestDays" value = {data.childArrestDays} onChange={handleChange} placeholder="Enter the number of days:"/>
               </FormField>
 
               <div className="title-container">
@@ -500,7 +531,7 @@ function Form() {
               <FormField>
                   <Label htmlFor="avgEncampCost">Please enter the percentage of homeless youth who are arrested after being homeless:
                   </Label>
-                  <Input type="number" id="avgEncampCost" name="avgEncampCost" placeholder="Enter the cost per person per year for encampment:"/>
+                  <Input type="number" id="avgEncampCost" name="avgEncampCost" value = {data.avgEncampCost} onChange={handleChange} placeholder="Enter the cost per person per year for encampment:"/>
               </FormField>
 
               <ExplanationText

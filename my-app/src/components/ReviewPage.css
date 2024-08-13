@@ -1,0 +1,70 @@
+
+/* ReviewPage.css */
+.review-container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+    background: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+  }
+  
+  .review-header {
+    background-color: #003366;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .review-section {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 6px; 
+    justify-content: space-between;
+    margin-bottom: 20px;
+    display: flex;
+  }
+  
+  .review-title {
+    color: #003366;
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #003366;
+    min-width: 300px;
+  }
+  
+  .review-data {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    align-items: center;
+  }
+  
+  .review-label {
+    font-weight: bold;
+    min-width: 20px;
+    color: #333;
+  }
+  
+  .review-value {
+    font-size: 16px;
+  }
+  
+  .guidance-button {
+    padding: 8px 16px;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .guidance-button:hover {
+    background-color: #0052a3;
+  }
