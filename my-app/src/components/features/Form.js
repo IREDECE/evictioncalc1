@@ -67,7 +67,8 @@ function Form() {
       const savedData = sessionStorage.getItem('formData');
       return savedData ? JSON.parse(savedData) : {
           evictionPercentage: '',
-          dailyCost: '',
+          dailyCostIndiv: '',
+          dailyCostFamily:'',
           shelterDays: '',
           ERpercent: '',
           ERonlyhomeless: '',
@@ -159,16 +160,23 @@ function Form() {
             </FormField>
 
             <ExplanationText
-                text = "Staff at Robin Hood suggested that 25% of evicted individuals experienced homelessness in non-pandemic times (2014). We consider this figure likely inflated due to underreporting of informal housing solutions, barriers to accessing shelters, availability of alternative housing programs, and shifts in housing policies. A more localized study in Hennepin County (2018) utilizing interviews and public records indicated that only about 10% of those with an eviction filing accessed county-funded shelters within three years post-eviction. This lower estimate seems more realistic based on the data."
+                text = "<p>Staff at Robin Hood suggested that 25% of evicted individuals experienced homelessness in non-pandemic times (2014). We consider this figure likely inflated due to underreporting of informal housing solutions, barriers to accessing shelters, availability of alternative housing programs, and shifts in housing policies. A more localized study in Hennepin County (2018) utilizing interviews and public records indicated that only about 10% of those with an eviction filing accessed county-funded shelters within three years post-eviction. This lower estimate seems more realistic based on the data.</p>"
+                referenceRange = "around 10%"
             />
 
             <FormField>
-                <Label htmlFor="dailyCost">Please enter the cost per bed per year in shelters</Label>
-                <Input type="number" id="dailyCost" name="dailyCost" value = {data.dailyCost} onChange={handleChange} placeholder="Enter the cost"/>
+                <Label htmlFor="dailyCostIndiv">Please enter the cost per bed per day in shelters for individuals</Label>
+                <Input type="number" id="dailyCostIndiv" name="dailyCostIndiv" value = {data.dailyCostIndiv} onChange={handleChange} placeholder="Enter the cost"/>
+            </FormField>
+
+            <FormField>
+                <Label htmlFor="dailyCost">Please enter the cost per bed per day in shelters for families</Label>
+                <Input type="number" id="dailyCostFamily" name="dailyCostFamily" value = {data.dailyCostFamily} onChange={handleChange} placeholder="Enter the cost"/>
             </FormField>
 
             <ExplanationText
-                text = "The financial implications of providing shelter vary between families and single adults, primarily due to differing needs such as privacy. According to research by Culhane et al. (2021), there are variations in the average, median, and modal costs nationwide. Given the high shelter costs driven by mandatory provisions in New York City and Massachusetts, we adopted the modal figure of $17,742 per year for families and $14,064 for individuals. This approach mitigates the skewing effect of exceptionally high costs in specific locales."
+                text = "<p>The financial implications of providing shelter vary between families and single adults, primarily due to differing needs such as privacy. According to research by Culhane et al. (2021), there are variations in the average, median, and modal costs nationwide. Given the high shelter costs driven by mandatory provisions in New York City and Massachusetts, we adopted the modal figure of $17,742 per year for families and $14,064 for individuals. This approach mitigates the skewing effect of exceptionally high costs in specific locales.</p><p>Make sure you are using the cost in 2024. For inflation adjustments, visit https://www.usinflationcalculator.com/.</p>"
+                referenceRange = "Inflation adjusted for 2024, the cost of shelter per bed per year for families is $23,509, $64.4 per day. Adjusted cost of shelter for individuals per year is $18,636, $51.05 per day."
             />
 
             <FormField>
@@ -214,7 +222,8 @@ function Form() {
               </FormField>
 
               <ExplanationText
-                  text = "From available data, about 23% of individuals experiencing homelessness use inpatient care services. This estimate is supported by two studies: Kushel’s 2001 research and Lebrun-Harris et al.'s 2012 study, which both reported similar utilization rates of approximately 23%. Given the consistency across these studies, we have adopted a slightly adjusted rate of 23.3% for inpatient care usage."
+                  text = "A 2020 SRR report, drawing on earlier research by Kushel, estimated that approximately 32% of homeless individuals utilized emergency room services. This figure is based on data collected in 1996 across various homeless assistance programs nationwide. A subsequent 2002 study by Kushel focused on San Francisco and found that 40.4% of homeless individuals had at least one ER visit in the previous year. We chose the more conservative 32% estimate as it is likely more representative of the national situation, considering its broader geographic sample and temporal context."
+                  referenceRange = "30-40%"
               />
 
               <FormField>
@@ -224,7 +233,8 @@ function Form() {
               </FormField>
 
               <ExplanationText
-                  text = "According to the 2020 SRR report, a substantial 80% of inpatient care utilized by the homeless is directly attributable to their housing instability. This significant percentage underscores the profound impact homelessness has on healthcare needs and utilization."
+                  text = "SRR report (2020) also includes that approximately 75% of people experiencing homelessness and utilize ER solely because of their homelessness."
+                  referenceRange = "Only SRR has numbers related to this. I used one of their reports from Baltimore and found the result to be 60%. 60-80% would be a reasonable range to reference."
               />
 
               <FormField>
@@ -234,7 +244,8 @@ function Form() {
               </FormField>
 
               <ExplanationText
-                  text = "According to a 2019 report from UnitedHealth Group, the average cost for treating conditions typically manageable in primary care settings but treated in the ER is $2,032 per visit."
+                  text = "<p>According to a 2019 report from UnitedHealth Group, the average cost for treating conditions typically manageable in primary care settings but treated in the ER is $2,032 per visit.</p> <p>visit https://www.usinflationcalculator.com/.</p>"
+                  referenceRange = "Adjusting $2,032 for inflation in 2024, the cost would be $2,542."
               />
 
               <FormField>
@@ -248,6 +259,7 @@ function Form() {
                   text="Kushel's 2002 research provided a deeper insight into these visits:"
                   lists={ERFrenquencyCalculation}
                   imgSrc= {localImage2}
+                  referenceRange = "Within the range of 2-5."
               />
 
               <div className="title-container2">
@@ -262,7 +274,8 @@ function Form() {
 
               <ExplanationText
                   title = "Inpatient Care Utilization Among Homeless Populations:"
-                  text="From available data, about 23% of individuals experiencing homelessness use inpatient care services. This estimate is supported by two studies: Kushel’s 2001 research and Lebrun-Harris et al.'s 2012 study, which both reported similar utilization rates of approximately 23%. Given the consistency across these studies, we have adopted a slightly adjusted rate of 23.3% for inpatient care usage."
+                  text="From available data, about 23% of individuals experiencing homelessness use inpatient care services. This estimate is supported by two studies: Kushel's 2001 research and Lebrun-Harris et al.'s 2012 study, which both reported similar utilization rates of approximately 23%. Given the consistency across these studies, we have adopted a slightly adjusted rate of 23.3% for inpatient care usage."
+                  referenceRange = "23.3%"
               />
 
               <FormField>
@@ -273,6 +286,7 @@ function Form() {
 
               <ExplanationText
                   text="According to the 2020 SRR report, a substantial 80% of inpatient care utilized by the homeless is directly attributable to their housing instability. This significant percentage underscores the profound impact homelessness has on healthcare needs and utilization."
+                  referenceRange = "Similarly as the question for ER visit, I found this number to be around 57.4% using SRR's Baltimore study. But 50-80% would be a reasonable range."
               />
 
               <FormField>
@@ -282,7 +296,8 @@ function Form() {
               </FormField>
 
               <ExplanationText
-                  text="The Kaiser Family Foundation (KFF) in 2022 estimated the average daily cost of an inpatient hospital visit to be $2,857. This figure is crucial for calculating the total expenditure on hospital stays for homeless individuals, emphasizing the financial burden placed on healthcare systems by housing instability."
+                  text="<p>The Kaiser Family Foundation (KFF) in 2022 estimated the average daily cost of an inpatient hospital visit to be $2,857. This figure is crucial for calculating the total expenditure on hospital stays for homeless individuals, emphasizing the financial burden placed on healthcare systems by housing instability.</p><p> Make sure you are using value of 2024, visit https://www.usinflationcalculator.com/.</p>"
+                  referenceRange = "$2,857 in 2022 is $3,067 in 2024 after adjusting for inflation."
               />
 
               <FormField>
@@ -293,6 +308,7 @@ function Form() {
 
               <ExplanationText
                   text="Research by Kimberly Rollings et al. (2022), examining data from the 2017-2019 National Inpatient Sample, found that the average hospital stay for individuals identified with housing instability ranges around 6.7 days. This duration provides an insight into the extent of care required, often more extended due to the exacerbated health conditions associated with homelessness."
+                  referenceRange = "(6+1.5)/(6-1.5) days. Wadhera et al. (2019) also found that mean length of stay by homeless individuals are 6.5 days."
               />
 
               <ExplanationText
@@ -358,6 +374,7 @@ function Form() {
                     "Out-of-home placements are typically considered in more severe circumstances, and for homeless families, this measurement can highlight the acute needs and risks faced by children, rather than broader foster care metrics that might include preventive or temporary interventions."
                   ]
                 ]}
+                referenceRange = "M.Shinn found that the rates of child separations ranged across sites from 9% to 24% of children."
               />
 
             <FormField>
@@ -368,13 +385,15 @@ function Form() {
 
             <ExplanationText
                 title = "Determining the average cost of foster care:"
+                text = "For help in adjusting inflation, visit https://www.usinflationcalculator.com/."
                 imgSrc= {localImage3}
                 lists={[
                   [
                     "A report (2019) from Alia estimated the costs of foster care per year (shown in the figure below):",
-                    "Because we believe that the medical costs are already included in our calculation for children’s ER and inpatient care, we revisited the study by Zill (2011) and found that the total of maintenance costs and administrative costs per child per year was $25,782 ($19,107 plus $6,675) in 2011. "
+                    "Because we believe that the medical costs are already included in our calculation for children's ER and inpatient care, we revisited the study by Zill (2011) and found that the total of maintenance costs and administrative costs per child per year was $25,782 ($19,107 plus $6,675) in 2011. "
                   ]
                 ]}
+                referenceRange = "$25,782 is $36,010 in 2024 after adjusting for inflation."
             />
 
             <FormField>
@@ -385,7 +404,7 @@ function Form() {
 
             <ExplanationText
                 title = "Determining the average cost of foster care:"
-                text = "The AFCARS Report in 2021 found that the mean time a child stays in foster care is 21.9 months, median care in care is 17.5 months. We rounded 21.9 to 22. 22 months is about 1.83 years"
+                text = "The AFCARS Report in 2021 found that the mean time a child stays in foster care is 21.9 months, median care in care is 17.5 months. We rounded 21.9 to 22. 22 months is about 1.83 years. If you want to find out the cost in the year after, input 1."
             />
 
             <div className="title-container2">
@@ -411,12 +430,13 @@ function Form() {
 
             <ExplanationText
                 title = "Determining children's ER visit rate:"
-                text = "According to M.Shinn (2011), formerly homeless children’s ER usage is 14% compared to 6%. In addition to this, L.Chang et al (2023) found that frequent ER use is common among homeless children: 22.1% vs 4.3% who were housed. Frequent ER use is defined as more than 4 visits a year."
+                text = "According to M.Shinn (2011), formerly homeless children's ER usage is 14% compared to 6%. In addition to this, L.Chang et al (2023) found that frequent ER use is common among homeless children: 22.1% vs 4.3% who were housed. Frequent ER use is defined as more than 4 visits a year."
                 lists={[
                   [
-                    "We recommend using Shinn’s estimate that 14% of homeless children use ER."
+                    "We recommend using Shinn's estimate that 14% of homeless children use ER."
                   ]
                 ]}
+                referenceRange = "10-20%"
             />
 
             <FormField>
@@ -428,12 +448,13 @@ function Form() {
             <ExplanationText
                 title = "Determining the average cost of child's ER visit:"
                 imgSrc= {localImage4}
-                text = "Before researching the cost of ER, we first hypothesized that the average cost per ER visit is less than the ER visit cost for adults. A study by D.Young substantiated our hypothesis confirming that the costs of managing children are typically less than for adults with the same normal condition. In university hospitals, there tends to be less use of laboratory, radiology, and pharmacy services for children than for adults."
+                text = "<p>Before researching the cost of ER, we first hypothesized that the average cost per ER visit is less than the ER visit cost for adults. A study by D.Young substantiated our hypothesis confirming that the costs of managing children are typically less than for adults with the same normal condition. In university hospitals, there tends to be less use of laboratory, radiology, and pharmacy services for children than for adults.</p><p>For inflation adjustments, visit visit https://www.usinflationcalculator.com/.</p>"
                 lists={[
                   [
                     "From a report by the Pediatric Readiness Group in 2022, the mean cost for acute care for children is $1155."
                   ]
                 ]}
+                referenceRange = "$1,155 adjusting for inflation is $1,240 in 2024."
             />
 
             <FormField>
@@ -458,7 +479,7 @@ function Form() {
                   [
                     "The trauma and anxiety associated with losing one's home can have profound psychological effects on children, including depression, anxiety, and behavioral problems. These emotional and mental health issues can be demonstrated as externalizing behaviors, including aggression and delinquency.",
                     "The Office of juvenile justice and delinquency prevention (2023) has found that 4.2 million youth and young adults are estimated to experience homelessness each year, and about 57 percent of those youth are estimated to have prior records of foster care, juvenile justice involvement, or both.",
-                    "What’s more, juvenile delinquency is associated with future likelihood of re-entering homelessness. The Prison Policy Initiative found that people who have been incarcerated are 7 times as likely to experience homelessness than a member of the public. This functions as a negative loop, driving up the societal cost of solving homelessness and people have less chances of improving their living conditions after becoming homelessness. "
+                    "What's more, juvenile delinquency is associated with future likelihood of re-entering homelessness. The Prison Policy Initiative found that people who have been incarcerated are 7 times as likely to experience homelessness than a member of the public. This functions as a negative loop, driving up the societal cost of solving homelessness and people have less chances of improving their living conditions after becoming homelessness. "
                   ]
                 ]}
             />
@@ -485,6 +506,7 @@ function Form() {
                     "With these three sources, we believe that the percentage of youth arrested being homeless is around 25%, with the third source being the closest estimate as it considers the additional difference in being arrested before and after youth becoming homeless."
                   ]
                 ]}
+                referenceRange = "25-40%"
             />
 
             <FormField>
@@ -495,14 +517,22 @@ function Form() {
 
             <ExplanationText
                 title = "Suggestions for this cost: "
-                text = "According to a report by the Justice Policy Institute, the cost of juvenile detention per day was $407.58 in 2014."
+                text = "<p>According to a report by the Justice Policy Institute, the cost of juvenile detention per day was $407.58 in 2014.</p><p>For help adjusting inflation, visit https://www.usinflationcalculator.com/.</p>"
             />
 
             <FormField>
                 <Label htmlFor="childArrestDays">Please enter the average number of days a child remains in juvenile detention:
                 </Label>
                 <Input type="number" id="childArrestDays" name="childArrestDays" value = {data.childArrestDays} onChange={handleChange} placeholder="Enter the number of days:"/>
-            </FormField></>
+            </FormField>
+
+            <ExplanationText
+                text = "<p>According to the U.S. Department of Justice (2019), half of all youth committed to public facilities for an offense remained in placement after 112 days (115 for private facilities)."
+            />
+            
+            </>
+
+            
                 )}
 
               <div className="title-container">
@@ -528,7 +558,7 @@ function Form() {
               text = "The presence of encampments can lead to increased community costs. Local governments spend money on policing, cleaning, and occasionally dismantling these encampments."
               lists={[
                 [
-                  "Oakland’s 2017-2019 proposed budget includes a $1.14 million budget for cleanup crews and $250,000, and a plan to leverage an additional $1.8 million—to operate the city’s indoor and outdoor Safe Haven Navigation Centers.",
+                  "Oakland's 2017-2019 proposed budget includes a $1.14 million budget for cleanup crews and $250,000, and a plan to leverage an additional $1.8 million—to operate the city’s indoor and outdoor Safe Haven Navigation Centers.",
                   "Reported in 2016, Honolulu spent $15,000 per week on encampment sweeps. ",
                   "A lot of the costs associated with city enforcements cannot be directly included. For example, Tars (2017) also pointed out that thousands of dollars are spent to make certain areas less accessible to people entering unsheltered homelessness, such as building fences, bars, rocks, spikes, and other architectures. There are also indirect costs related to public health, safety, and the potential decrease in nearby property values."
                 ]
@@ -559,8 +589,9 @@ function Form() {
 
           <ExplanationText
               title = "Determining the average cost for city encampments:"
-              text = "<p>In a report “Exploring Homelessness Among People Living in Encampments and Associated Cost” by the US Department of Housing and Urban Development in 2020, four cities with encampments were studied and their expenditures are listed below in the chart.</p><p>To determine the average cost per unsheltered individual,  we added the total spendings on encampment activities in these 4 cities altogether and divided the total by the sum of the unsheltered homeless population in these 4 cities. We concluded that the average cost per unsheltered homeless person in 2019 is $1,700.</p>"
+              text = "<p>In a report “Exploring Homelessness Among People Living in Encampments and Associated Cost” by the US Department of Housing and Urban Development in 2020, four cities with encampments were studied and their expenditures are listed below in the chart.</p><p>To determine the average cost per unsheltered individual,  we added the total spendings on encampment activities in these 4 cities altogether and divided the total by the sum of the unsheltered homeless population in these 4 cities. We concluded that the average cost per unsheltered homeless person in 2019 is $1,700.</p><p>For help on inflation adjustment, visit https://www.usinflationcalculator.com/.</p>"
               imgSrc={localImage6}
+              referenceRange = "$1,700 in 2019 is $2,089 in 2024 after adjusting for inflation."
           /></>
             )}
 

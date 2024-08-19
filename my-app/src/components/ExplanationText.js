@@ -4,7 +4,7 @@ import React from 'react';
 import './ExplanationText.css';
 
 
-function ExplanationText({ title, text, lists, subcategories, imgSrc, calculations }) {
+function ExplanationText({ title, text, lists, subcategories, imgSrc, calculations, referenceRange }) {
   return (
     <div style={{ marginTop: '20px', marginBottom: '20px', padding: '20px', border: '1px solid #ccc', borderRadius: '5px', backgroundColor: '#f9f9f9' }}>
       <h3 style={{ color: '#333' }}>{title}</h3>
@@ -29,6 +29,12 @@ function ExplanationText({ title, text, lists, subcategories, imgSrc, calculatio
         </div>
       )}
       {imgSrc && <img src={imgSrc} alt="Explanation visual" className="explanation-img" />}
+      {referenceRange && (
+        <div className="reference-range">
+          <h4>Reference Range:</h4>
+          <p>{referenceRange}</p>
+        </div>
+      )}
     </div>
   );
 }

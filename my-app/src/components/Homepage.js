@@ -10,7 +10,7 @@ function Homepage() {
       </div>
       <div className="main">
         <p>Welcome to the Cost of Eviction Calculator!</p>
-        <p>This Calculator allows any user to leverage national and local data to estimate the cost of providing social services to people experiencing eviction-related displacement, including the cost of:</p>
+        <p>This is an online calculator that explains and assists users to understand and find out the cost of eviction using national and local data as well as scholarly researches. Feel free to play around with the numbers and explore the cost of eviction including the cost of: </p>
         <ul>
           <li>Emergency shelter</li>
           <li>Inpatient and emergency medical care</li>

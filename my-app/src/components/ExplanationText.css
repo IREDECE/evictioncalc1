@@ -35,4 +35,11 @@
     border-left: 3px solid #0056b3; /* A different shade for calculations */
   }
 
-  
+  .reference-range {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f0faff;
+    border: 1px dashed #007BFF;
+    border-radius: 5px;
+    color: #333;
+}

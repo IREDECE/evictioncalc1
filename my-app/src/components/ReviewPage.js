@@ -31,10 +31,19 @@ function handleGuidance(topic) {
       </div>
 
       <div className="review-section">
-        <div className="review-title">Cost per bed per year in shelters</div>
+        <div className="review-title">Cost per bed per year in shelters for individual</div>
         <div className="review-data">
           <span className="review-label">Cost:</span>
-          <span className="review-value">{data.dailyCost}</span>
+          <span className="review-value">{data.dailyCostIndiv}</span>
+          {/* <button className="guidance-button" onClick={() => handleGuidance('dailyCost')}>Guidance</button> */}
+        </div>
+      </div>
+
+      <div className="review-section">
+        <div className="review-title">Cost per bed per year in shelters for families</div>
+        <div className="review-data">
+          <span className="review-label">Cost:</span>
+          <span className="review-value">{data.dailyCostFamily}</span>
           {/* <button className="guidance-button" onClick={() => handleGuidance('dailyCost')}>Guidance</button> */}
         </div>
       </div>
@@ -210,7 +219,7 @@ function handleGuidance(topic) {
           {/* <button className="guidance-button" onClick={() => handleGuidance('avgEncampCost')}>Guidance</button> */}
         </div> 
       </div>
-      
+
       <button onClick={handleCalculateClick}>Calculate</button>
 
         {/* Continue adding other sections similarly */}
