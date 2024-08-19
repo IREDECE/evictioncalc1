@@ -112,6 +112,7 @@ function CostCalculator() {
                 <div className="total">Total Encampment Cost: ${encampmentCost.toLocaleString()}</div>
             </div>
             <div className="total-cost-box">
+                <h2 className="category-title">Total Costs</h2>
                 <div className="total">Total Cost of Eviction: ${totalCost.toLocaleString()}</div>
             </div>
         </div>
