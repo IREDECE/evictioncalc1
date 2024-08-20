@@ -57,3 +57,17 @@
     font-weight: bold;
     font-size: 18px;
 }
+
+.citations {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.citations a {
+    color: #0066cc;
+    text-decoration: none; /* Removes underline, optional based on preference */
+}
+
+.citations a:hover {
+    text-decoration: underline; /* Adds underline on hover for better user interaction */
+}

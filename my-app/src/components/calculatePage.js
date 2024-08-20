@@ -115,6 +115,9 @@ function CostCalculator() {
                 <h2 className="category-title">Total Costs</h2>
                 <div className="total">Total Cost of Eviction: ${totalCost.toLocaleString()}</div>
             </div>
+            <div className="citations">
+                <a href="https://docs.google.com/document/d/1hm0X1TlScHLLuBSoEREYYsUanXxayEll_dbgTthYJn0/edit?usp=sharing" target="_blank" rel="noopener noreferrer">List of Resources used for Cost Estimations</a>
+            </div>
         </div>
     );
 }
